@@ -12,6 +12,7 @@ import javafx.geometry.Insets
 import javafx.scene.control.Separator
 import eu.dzim.example.ui.CollapsibleItemPane
 import eu.dzim.example.ui.LineBreakText
+import javafx.scene.text.Font
 
 component ObjectRestauration styledwith [ "/style.css" ] {
 	VBox {
@@ -109,6 +110,8 @@ component ObjectRestauration styledwith [ "/style.css" ] {
 		},
 		CollapsibleItemPane {
 			titleText : "Kunsthistorische Werte erhalten",
+			titleStyleClass : [ "content-text-default" ],
+			titleUserData : "content-text-default",
 			content : VBox id content {
 				managed : false,
 				visible : false,
@@ -189,6 +192,8 @@ component ObjectRestauration styledwith [ "/style.css" ] {
 		},
 		CollapsibleItemPane {
 			titleText : "Restaurierungs-Bedarf",
+			titleStyleClass : [ "content-text-default" ],
+			titleUserData : "content-text-default",
 			content : VBox id content {
 				managed : false,
 				visible : false,
@@ -273,6 +278,8 @@ component ObjectRestauration styledwith [ "/style.css" ] {
 		},
 		CollapsibleItemPane {
 			titleText : "Vorhaben 2016-2019",
+			titleStyleClass : [ "content-text-default" ],
+			titleUserData : "content-text-default",
 			content : VBox id content {
 				managed : false,
 				visible : false,
@@ -325,6 +332,8 @@ component ObjectRestauration styledwith [ "/style.css" ] {
 		},
 		CollapsibleItemPane {
 			titleText : "Fundraising",
+			titleStyleClass : [ "content-text-default" ],
+			titleUserData : "content-text-default",
 			content : VBox id content {
 				managed : false,
 				visible : false,

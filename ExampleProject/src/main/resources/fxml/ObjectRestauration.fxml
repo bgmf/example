@@ -108,7 +108,10 @@
 			</VBox>
 		</content>
 	</CollapsibleItemPane>
-	<CollapsibleItemPane titleText="Kunsthistorische Werte erhalten"> 
+	<CollapsibleItemPane titleText="Kunsthistorische Werte erhalten" titleUserData="content-text-default"> 
+		<titleStyleClass>
+			<String fx:value="content-text-default" />
+		</titleStyleClass>
 		<content>
 			<VBox fx:id="content" managed="false" visible="false" spacing="3"> 
 				<TextFlow lineSpacing="3"> 
@@ -185,7 +188,10 @@
 			</VBox>
 		</content>
 	</CollapsibleItemPane>
-	<CollapsibleItemPane titleText="Restaurierungs-Bedarf"> 
+	<CollapsibleItemPane titleText="Restaurierungs-Bedarf" titleUserData="content-text-default"> 
+		<titleStyleClass>
+			<String fx:value="content-text-default" />
+		</titleStyleClass>
 		<content>
 			<VBox fx:id="content" managed="false" visible="false" spacing="3"> 
 				<TextFlow lineSpacing="3"> 
@@ -263,7 +269,10 @@
 			</VBox>
 		</content>
 	</CollapsibleItemPane>
-	<CollapsibleItemPane titleText="Vorhaben 2016-2019"> 
+	<CollapsibleItemPane titleText="Vorhaben 2016-2019" titleUserData="content-text-default"> 
+		<titleStyleClass>
+			<String fx:value="content-text-default" />
+		</titleStyleClass>
 		<content>
 			<VBox fx:id="content" managed="false" visible="false" spacing="3"> 
 				<TextFlow lineSpacing="3"> 
@@ -314,7 +323,10 @@
 			</VBox>
 		</content>
 	</CollapsibleItemPane>
-	<CollapsibleItemPane titleText="Fundraising"> 
+	<CollapsibleItemPane titleText="Fundraising" titleUserData="content-text-default"> 
+		<titleStyleClass>
+			<String fx:value="content-text-default" />
+		</titleStyleClass>
 		<content>
 			<VBox fx:id="content" managed="false" visible="false" spacing="3"> 
 				<TextFlow lineSpacing="3"> 
