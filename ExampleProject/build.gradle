@@ -1,0 +1,54 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.javafxports:jfxmobile-plugin:1.2.0'
+    }
+}
+
+apply plugin: 'org.javafxports.jfxmobile'
+
+repositories {
+    jcenter()
+    maven {
+        url 'http://nexus.gluonhq.com/nexus/content/repositories/releases'
+    }
+}
+
+mainClassName = 'eu.dzim.example.Main'
+
+dependencies {
+    
+    compile 'com.gluonhq:charm:4.2.0'
+    
+    compile 'org.controlsfx:controlsfx:8.40.12'
+    compile 'de.jensd:fontawesomefx-commons:8.13'
+    compile 'de.jensd:fontawesomefx-fontawesome:4.7.0'
+    compile 'de.jensd:fontawesomefx-materialdesignfont:1.7.22'
+    
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.8.4'
+    
+    compileNoRetrolambda 'com.airhacks:afterburner.mfx:1.6.2'
+}
+
+jfxmobile {
+    downConfig {
+        version = '3.1.0'
+        plugins 'display', 'lifecycle', 'statusbar', 'storage', 'settings'
+    }
+    android {
+        manifest = 'src/android/AndroidManifest.xml'
+        compileSdkVersion = 22
+        minSdkVersion = 19
+        targetSdkVersion = 22
+        dexOptions {
+            javaMaxHeapSize '2g'
+        }
+        packagingOptions {
+            pickFirst 'META-INF/LICENSE'
+            pickFirst 'META-INF/NOTICE'
+            pickFirst 'license/LICENSE.txt'
+        }
+    }
+}

@@ -1,0 +1,88 @@
+package fxml
+
+import javafx.scene.layout.BorderPane
+import javafx.scene.layout.StackPane
+import javafx.scene.layout.HBox
+import javafx.scene.image.ImageView
+import javafx.scene.image.Image
+import javafx.scene.layout.Region
+import javafx.scene.control.Button
+import javafx.geometry.Insets
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon
+import eu.dzim.example.ui.RootController
+import javafx.scene.control.ScrollPane
+import javafx.scene.layout.VBox
+import javafx.scene.control.ProgressIndicator
+
+component Root styledwith [ "/style.css" ] controlledby RootController {
+	BorderPane {
+		styleClass : [ "object" ],
+		center: StackPane id content {
+			styleClass : [ "content" ],
+			static margin : Insets {
+				top : 5.0,
+				right : 0.0,
+				bottom : 5.0,
+				left : 0.0
+			},
+			ScrollPane id scrollContent {
+				styleClass : [ "content" ],
+				maxHeight : const Double#MAX_VALUE,
+				fitToHeight : true,
+				fitToWidth : true,
+				vbarPolicy : "AS_NEEDED",
+				hbarPolicy : "NEVER",
+				content : VBox id contentBox {
+					spacing : 10,
+					maxHeight : const Double#MAX_VALUE,
+					preview children : [
+						include fxml.ObjectRestauration
+					]
+				}
+			}
+		}, 
+		bottom: HBox {
+			styleClass : [ "toolbar" ],
+			alignment : "CENTER",
+			maxHeight : 50,
+			spacing : 10,
+			padding : Insets {
+				left : 5,
+				right : 5
+			},
+			ImageView {
+				image : Image {
+					url : location "/icon.png"
+				},
+				preserveRatio : true,
+				fitHeight : 40
+			},
+			Region {
+				static hgrow : "ALWAYS"
+			},
+			ProgressIndicator id progress { 
+				managed : false,
+				visible : false,
+				maxHeight : 40,
+				maxWidth : 40
+			},
+			Button id showContent {
+				styleClass : [ "graphic-only" ],
+				preview text : "Content",
+				graphic : MaterialDesignIconView {
+					glyphName : const MaterialDesignIcon#REFRESH,
+					glyphSize : 25
+				}
+			},
+			Button id showTextSize {
+				styleClass : [ "graphic-only" ],
+				preview text : "Text Size",
+				graphic : MaterialDesignIconView {
+					glyphName : const MaterialDesignIcon#FORMAT_SIZE,
+					glyphSize : 25
+				}
+			}
+		}
+	}
+}

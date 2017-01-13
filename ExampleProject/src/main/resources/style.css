@@ -1,0 +1,636 @@
+.root {
+	-color-bg-header: #ECEAE5;
+	-color-bg-content: #F7F7F5;
+	-color-bg-red: #C31622;
+	-color-header: #8A8A8A;
+	-color-red: #9F121C;
+	/*-color-icon-red: #FF0000;*/
+	-color-icon-red: #C31622;
+}
+
+/*
+ * some defaults
+ */
+ 
+.labeled {
+	-fx-font-smoothing-type: lcd;
+}
+
+.hyperlink-text {
+	-fx-bounds-type: logical_vertical_center;
+	-fx-text-fill: -color-red;
+	-fx-fill: -color-red;
+}
+
+/* ProgressIndicator */
+.progress-indicator {
+	-fx-progress-color: black;
+}
+
+/* ProgressBar */
+.progress-bar {
+	-fx-indeterminate-bar-length: 50;
+    -fx-indeterminate-bar-escape: true;
+    -fx-indeterminate-bar-flip: false;
+    -fx-indeterminate-bar-animation-time: 2;
+}
+.progress-bar > .bar {
+    -fx-background-color: -color-icon-red;
+    -fx-background-insets: 0 0 0 0;
+    -fx-background-radius: 0;
+    -fx-padding: 0.1em;
+}
+.progress-bar:indeterminate > .bar {
+    -fx-background-color: -color-icon-red;
+}
+.progress-bar > .track {
+	-fx-background-color: -color-header;
+	-fx-background-radius: 0;
+}
+
+/* 
+ * Slider
+ */
+.slider .thumb {
+    -fx-background-color: derive(-color-red, 30%);
+    -fx-background-insets: 0;
+    -fx-background-radius: 1.0em;
+    -fx-padding: 0.583333em;
+    -fx-effect: null; /*dropshadow(two-pass-box , rgba(0, 0, 0, 0.1), 5, 0.0 , 0, 2);*/
+}
+.slider .thumb:hover {
+	-fx-color: -color-red;
+}
+.slider .thumb:pressed {
+	-fx-color: -color-red;
+}
+.slider:focused .thumb {
+	-fx-background-color: -color-red;
+	-fx-background-insets: 0.0;
+	-fx-background-radius: 3;
+}
+.slider:focused .thumb {
+    -fx-background-radius: 1.0em; /* makes sure this remains circular */
+}
+.slider .track {
+	-fx-background-color: derive(-color-header, 25%);
+    -fx-background-insets: 2 0 0 0;
+    -fx-background-radius: 0.25em, 0.25em, 0.166667em; /* 3 3 2 */
+    -fx-padding: 0.25em; /* 3 */
+}
+.slider:vertical .track {
+    -fx-background-color: -color-header;
+}
+.slider .axis {
+    -fx-tick-label-fill: derive(-color-header, 30%);
+    -fx-tick-length: 5px;
+    -fx-minor-tick-length: 3px;
+    -fx-border-color: null;
+}
+.slider:disabled {
+	-fx-opacity: 0.4;
+}
+
+/*
+ * Overlay background 
+ */
+.overlay-background {
+     -fx-background-color: transparent;
+}
+.overlay-background:visible {
+     -fx-background-color: #000000B2; /* B2 (~.7) */
+}
+.overlay-background:visible-light {
+     -fx-background-color: #0000000A; /* 0A (~.1), 44 (~.25) */
+}
+
+/* 
+ * Welcome box
+ */
+.splash {
+	-fx-background-color: -color-bg-content;
+	-fx-padding: 0.0 0.0 0.0 0.0;
+}
+.splash > VBox {
+	-fx-background-image: url("./ui/img/Tuerme_Kloster.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat; /* repeat-x | repeat-y | [repeat | space | round | stretch | no-repeat]{1,2} */
+	-fx-background-size: cover; /* [ <size> | auto ]{1,2} | cover | contain | stretch */
+	-fx-padding: 5.0;
+}
+.splash:vertical > VBox {
+	-fx-background-image: url("./ui/img/splash_vertical.jpg");
+}
+.splash:horizontal > VBox {
+	-fx-background-image: url("./ui/img/splash_horizontal.jpg");
+}
+
+.splash .splash-label {
+	-fx-text-fill: white;
+	-fx-font-size: 14pt;
+	-fx-font-style: normal;
+	-fx-font-weight: bold;
+}
+.splash .splash-progress {
+	-fx-progress-color: white;
+}
+
+/*
+ * the app's root container
+ */
+.app-root {
+	-fx-background-color: -color-bg-content;
+	-fx-padding: 0.0 0.0 0.0 0.0;
+}
+
+/*
+ * root content container
+ */
+.content {
+	-fx-background-color: -color-bg-content;
+}
+
+/*
+ * bottom toolbar
+ */
+.toolbar {
+	-fx-min-height: 50;
+	-fx-background-color: -color-bg-header;
+}
+.toolbar.default {
+	-fx-padding: 5.0;
+	-fx-background-color: -color-bg-header;
+}
+.toolbar.red {
+	-fx-padding: 5.0;
+	-fx-background-color: -color-bg-red;
+}
+
+/*
+ * Home pane
+ */
+.welcome {
+	-fx-background-color: -color-bg-content;
+	-fx-padding: 5.0;
+	-fx-background-image: url("./ui/img/Altar.png");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat; /* repeat-x | repeat-y | [repeat | space | round | stretch | no-repeat]{1,2} */
+	-fx-background-size: cover; /* [ <size> | auto ]{1,2} | cover | contain | stretch */
+}
+.welcome:vertical {
+	-fx-background-image: url("./ui/img/altar_vertical.jpg");
+}
+.welcome:horizontal {
+	-fx-background-image: url("./ui/img/altar_horizontal.jpg");
+}
+
+.welcome .label {
+	-fx-text-fill: white;
+	-fx-font-size: 14pt;
+	-fx-font-style: normal;
+	-fx-font-weight: bold;
+	-fx-alignment: center-left;
+}
+
+/*
+ * Swipe Pane
+ */
+/* extended StackPane */
+.swipe-pane {
+	-fx-alignment: center;
+}
+/* HBox */
+.swipe-pane .pagination {
+	-fx-spacing: 10;
+	-fx-alignment: bottom-center;
+	-fx-max-height: 25;
+	-fx-padding: 0.0 0.0 5.0 0.0; /* bottom padding only */
+}
+.swipe-pane .pagination .circle {
+	-fx-border-radius: 20.0;
+	-fx-border-color: -color-header;
+	-fx-border-width: 2.0;
+	-fx-background-radius: 20.0;
+	-fx-background-color: transparent;
+	-fx-max-height: 20.0;
+	-fx-min-height: 20.0;
+	-fx-max-width: 20.0;
+	-fx-min-width: 20.0;
+	-fx-content-display: graphic-only;
+	-fx-graphic-text-gap: 0.0;
+	-fx-text-fill: black;
+}
+.swipe-pane .pagination .circle:hover {
+	-fx-fill: derive(-color-header, +30%);
+	-fx-background-color: derive(-color-header, +30%);
+}
+.swipe-pane .pagination .circle:armed,
+.swipe-pane .pagination .circle:pressed,
+.swipe-pane .pagination .circle:selected {
+	-fx-background-color: -color-header;
+}
+.swipe-pane .pagination .circle:disabled {
+	-fx-opacity: 0.75;
+	-fx-fill: derive(-color-header, -30%);
+	-fx-background-color: derive(-color-header, -30%);
+}
+
+/*
+ * Discover page
+ */
+ 
+.discover {}
+
+.discover .scroll-pane {
+	-fx-background-color: transparent;
+}
+
+.discover .scroll-pane > .viewport {
+	-fx-background-color: transparent;
+}
+
+/*
+ * Object pages
+ */
+.object {}
+
+.object .scroll-pane {
+	-fx-background-color: transparent;
+}
+
+.object .scroll-pane > .viewport {
+	-fx-background-color: transparent;
+}
+
+/*
+ * Discover page
+ */
+ 
+.menu {}
+
+.menu .scroll-pane {
+	-fx-background-color: transparent;
+}
+
+.menu .scroll-pane > .viewport {
+	-fx-background-color: transparent;
+}
+
+/* 
+ * FlowPane wrapped in a TextFlow
+ */
+.adaptive-text-flow {
+	/*-fx-pref-width: 30;*/
+	-fx-text-alignment: left; /*left, center, right, justify*/
+	-fx-wrap-text: true;
+}
+
+/*
+ * Button & ToogleButton, graphic only
+ */
+.button.graphic-only,
+.toggle-button.graphic-only {
+    -fx-background-color: transparent;
+    -fx-content-display: graphic-only;
+	-fx-graphic-text-gap: 0.0;
+}
+.button.graphic-only *,
+.toggle-button.graphic-only * {
+	-fx-fill: -color-header;
+}
+.button.graphic-only.white *,
+.toggle-button.graphic-only.white * {
+	-fx-fill: white;
+}
+.button.graphic-only:hover,
+.toggle-button.graphic-only:hover {
+	-fx-background-color: transparent;
+}
+.button.graphic-only:hover *,
+.toggle-button.graphic-only:hover * {
+	-fx-fill: derive(-color-red, +99%);
+}
+.button.graphic-only:armed,
+.button.graphic-only:pressed,
+.button.graphic-only:selected,
+.toggle-button.graphic-only:armed,
+.toggle-button.graphic-only:pressed,
+.toggle-button.graphic-only:selected {
+    -fx-background-color: transparent;
+}
+.button.graphic-only:pressed *,
+.toggle-button.graphic-only:pressed * {
+	-fx-fill: derive(-color-red, -30%);
+}
+.button.graphic-only:selected * ,
+.toggle-button.graphic-only:selected * {
+	-fx-fill: -color-red;
+}
+.button.graphic-only:disabled,
+.toggle-button.graphic-only:disabled {
+	-fx-opacity: 0.7;
+    -fx-background-color: transparent;
+}
+
+/*
+ * Button & ToogleButton, transparent
+ */
+.button.transparent,
+.toggle-button.transparent {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+}
+.button.transparent:hover,
+.toggle-button.transparent:hover {
+	-fx-background-color: -color-bg-content;
+}
+.button.transparent:armed,
+.button.transparent:pressed,
+.button.transparent:selected,
+.toggle-button.transparent:armed,
+.toggle-button.transparent:pressed,
+.toggle-button.transparent:selected {
+    -fx-background-color: -color-bg-header;
+    -fx-text-fill: black;
+}
+.button.transparent:disabled,
+.toggle-button.transparent:disabled {
+	-fx-opacity: 1.0;
+    -fx-background-color: -color-header;
+}
+/* special pseudo class for this kind of buttons may be used as kind of links */
+.button.transparent:selected-text,
+.toggle-button.transparent:selected-text {
+	-fx-text-fill: -color-red;
+}
+
+.button.transparent.no-effect,
+.toggle-button.transparent.no-effect {
+    -fx-background-color: transparent;
+    -fx-text-fill: -color-header;
+}
+.button.transparent.no-effect:hover,
+.toggle-button.transparent.no-effect:hover {
+	-fx-background-color: transparent;
+}
+.button.transparent.no-effect:armed,
+.button.transparent.no-effect:pressed,
+.button:selected.transparent.no-effect,
+.toggle-button.transparent.no-effect:armed,
+.toggle-button.transparent.no-effect:pressed,
+.toggle-button.transparent.no-effect:selected {
+    -fx-background-color: transparent;
+    -fx-text-fill: -color-red;
+}
+
+*:selected-bg {
+	-fx-background-color: -color-bg-header;
+	-fx-padding: 0.0 0.0 0.0 10.0;
+}
+*:selected-bg-alt {
+	-fx-background-color: -color-bg-header;
+	-fx-padding: 0.0 30.0 0.0 10.0;
+}
+
+/*
+ * Button & ToogleButton, red
+ */
+.button.red,
+.toggle-button.red {
+    -fx-background-color: -color-red;
+    -fx-text-fill: white;
+}
+.button.red:hover,
+.toggle-button.red:hover {
+	-fx-background-color: derive(-color-red, +30%);
+}
+.button.red:armed,
+.button.red:pressed,
+.button.red:selected,
+.toggle-button.red:armed,
+.toggle-button.red:pressed,
+.toggle-button.red:selected {
+    -fx-background-color: derive(-color-red, -20%);
+}
+.button.red:disabled,
+.toggle-button.red:disabled {
+	-fx-opacity: 1.0;
+    -fx-background-color: -color-header;
+}
+
+.button.red.round,
+.toggle-button.red.round {
+    -fx-background-color: -color-red;
+    -fx-text-fill: white;
+}
+.button.red.round:beacon-nearby,
+.toggle-button.red.round:beacon-nearby {
+	-fx-background-color: dodgerblue;
+}
+
+/*
+ * Button & ToogleButton, black
+ */
+.button.black,
+.toggle-button.black {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+.button.black:hover,
+.toggle-button.black:hover {
+	-fx-background-color: derive(-color-header, +30%);
+}
+.button.black:armed,
+.button.black:pressed,
+.button.black:selected,
+.toggle-button.black:armed,
+.toggle-button.black:pressed,
+.toggle-button.black:selected {
+    -fx-background-color: derive(-color-header, -20%);
+}
+.button.black:disabled,
+.toggle-button.black:disabled {
+	-fx-opacity: 1.0;
+    -fx-background-color: -color-header;
+}
+
+.button.black.round,
+.toggle-button.red.round {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+.button.black.round:beacon-nearby,
+.toggle-button.black.round:beacon-nearby {
+	-fx-background-color: -color-red;
+}
+
+/*
+ * RadioButton & CheckBox appearance
+ */
+
+.radio-button > .radio,
+.check-box > .box {
+	-fx-background-color: -color-bg-red;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-text-fill: white;
+    -fx-alignment: CENTER; /*top-left, top-center, top-right, center-left, center, center-right, bottom-left, bottom-center, bottom-right, baseline-left, baseline-center, baseline-right*/
+}
+
+.radio-button:hover > .radio,
+.check-box:hover > .box {
+	-fx-color: -color-bg-red;
+}
+
+.radio-button:armed > .radio,
+.check-box:armed .box {
+	-fx-color: -color-bg-red;
+}
+
+.radio-button:focused > .radio,
+.radio-button:selected > .radio,
+.check-box:focused > .box,
+.check-box:selected > .box {
+	-fx-background-color: -color-bg-red;
+}
+
+.radio-button:disabled,
+.check-box:disabled  {
+	-fx-opacity: 0.4;
+	-fx-color: -color-bg-red;
+}
+
+/*
+ * RadioButton
+ */
+
+.radio-button > .radio {
+	-fx-border-width: 2px;
+    -fx-border-color: -color-header;
+    -fx-background-color: white;
+    -fx-background-image: null;
+    -fx-border-radius: 15px;
+    -fx-padding: 4px;
+}
+
+.radio-button:hover > .radio {
+	-fx-border-color: -color-bg-red;
+}
+.radio-button:armed > .radio,
+.radio-button:selected > .radio {
+	-fx-border-color: -color-bg-red;
+	-fx-background-color: transparent;
+}
+
+.radio-button > .radio > .dot {
+	-fx-background-insets: 0;
+	-fx-background-color: transparent;
+	-fx-background-radius: 10px;
+	-fx-padding: 4px;
+}
+
+.radio-button:selected > .radio > .dot {
+	-fx-background-color: -color-bg-red;
+}
+
+/*
+ * CheckBox appearance
+ */
+ 
+.check-box > .box {
+ 	-fx-border-width: 2px;
+    -fx-border-color: -color-header;
+    -fx-border-radius: 2px;
+	-fx-background-color: white;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-text-fill: white;
+    -fx-alignment: CENTER; /*top-left, top-center, top-right, center-left, center, center-right, bottom-left, bottom-center, bottom-right, baseline-left, baseline-center, baseline-right*/
+}
+.check-box:hover > .box {
+	-fx-border-color: -color-bg-red;
+}
+.check-box > .box > .mark {
+    -fx-background-color: null;
+    -fx-padding: 0.416667em 0.416667em 0.5em 0.5em;
+    /*-fx-shape: "M-0.25,6.083c0.843-0.758,4.583,4.833,5.75,4.833S14.5-1.5,15.917-0.917c1.292,0.532-8.75,17.083-10.5,17.083C3,16.167-1.083,6.833-0.25,6.083z";*/
+    -fx-shape: "M10.9531936,3.35999695 L7.09547081,9.88133168 L5.07395578,7.85981665 C4.82821355,7.61407441 4.43004891,7.61407441 4.18430668,7.85981665 C3.93856444,8.10555889 3.93856444,8.50372352 4.18430668,8.74946576 L6.20582171,10.7709808 L7.33327803,11.7374235 L8.1423841,10.5134107 L11.914579,4.02484771 C12.1327032,3.70619979 12.179991,3.30929175 11.7869308,3.0761762 C11.3584048,2.87301232 11.079311,3.11363502 10.9531936,3.35999695 Z";
+}
+.check-box:selected > .box,
+.check-box:armed > .box,
+.check-box:focused > .box {
+	-fx-background-color: white;
+}
+.check-box:selected > .box > .mark {
+    -fx-background-color: -color-bg-red;
+}
+.check-box:indeterminate  > .box > .mark {
+    -fx-shape: "M0,0H10V2H0Z";
+    -fx-scale-shape: false;
+    -fx-padding: 0.666667em; 
+}
+
+/*
+ * Default text appearances (bold, colored, large, small, ...)
+ */
+
+.heading-primary {
+	-fx-text-fill: black;
+	-fx-font-weight: bold;
+}
+.heading-secondary {
+	-fx-text-fill: -color-header;
+	-fx-font-weight: bold;
+}
+.content-text-default {
+	-fx-bounds-type: logical_vertical_center;
+	-fx-text-fill: black;
+}
+.content-text-white {
+	-fx-bounds-type: logical_vertical_center;
+	-fx-text-fill: white;
+}
+.content-text-red {
+	-fx-bounds-type: logical_vertical_center;
+	-fx-text-fill: -color-red;
+}
+.content-text-bold {
+	-fx-font-weight: bold;
+}
+.content-text-italic {
+	-fx-font-style: italic;
+}
+.content-text-underlined {
+	-fx-underline: true;
+}
+.content-text-big {
+	-fx-font-size: 1.2em;
+}
+/* please update Constants Java class as well, if you apply changes here */
+.content-text-large {
+	-fx-font-size: 1.2em;
+}
+.content-text-xlarge {
+	-fx-font-size: 1.4em;
+}
+.content-text-xxlarge {
+	-fx-font-size: 1.6em;
+}
+.content-text-xxxlarge {
+	-fx-font-size: 1.8em;
+}
+.content-text-xxxxlarge {
+	-fx-font-size: 2.0em;
+}
+.content-text-small {
+	-fx-font-size: 0.8em;
+}
+.content-text-xsmall {
+	-fx-font-size: 0.6em;
+}
+.content-text-sup {
+	-fx-font-size: 0.6em;
+	-fx-translate-y: -0.6em;
+}
+.content-text-sub {
+	-fx-font-size: 0.6em;
+	-fx-translate-y: 0.3em;
+}

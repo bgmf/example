@@ -1,0 +1,343 @@
+package fxml
+
+import javafx.scene.layout.VBox
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon
+import javafx.scene.control.Label
+import javafx.scene.layout.BorderPane
+import javafx.scene.text.Text
+import javafx.scene.text.TextFlow
+import javafx.scene.image.ImageView
+import javafx.scene.image.Image
+import javafx.geometry.Insets
+import javafx.scene.control.Separator
+import eu.dzim.example.ui.CollapsibleItemPane
+import eu.dzim.example.ui.LineBreakText
+
+component ObjectRestauration styledwith [ "/style.css" ] {
+	VBox {
+		CollapsibleItemPane {
+			titleText : "Damit sie im alten Glanz erstrahlt",
+			titleStyleClass : [ "content-text-default" ],
+			titleUserData : "content-text-default",
+			content : VBox id content {
+				managed : false,
+				visible : false,
+				spacing : 3,
+				TextFlow {
+					lineSpacing : 3,
+					Text {
+						styleClass : [ "content-text-italic", "content-text-small" ],
+						userData : "content-text-small",
+						text : "Die Restaurierung der Klosterkirche St. Martin ist dringend notwendig: Nur so können wir das Kulturgut nationaler Bedeutung und seinen hohen kunsthistorischen Wert erhalten."
+					},
+					LineBreakText,
+					ImageView {
+						image : Image {
+							url : location "img/kloster_werbung.jpg"
+						},
+						preserveRatio : true,
+						fitHeight : 300
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-italic", "content-text-small" ],
+						userData : "content-text-small",
+						text : "Die Südfassade musste eingerüstet werden, um Besucher und Mönche vor den Folgen von Frostschäden und Fassadenrissen zu schützen."
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-bold", "content-text-small" ],
+						userData : "content-text-small",
+						text : "1400 Jahre Kloster Disentis: Kulturgut von nationaler Bedeutung."
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-small" ],
+						userData : "content-text-small",
+						text : "Das wohl älteste, noch lebendige Benediktinerkloster nördlich der Alpen weist eine wechselvolle Geschichte auf. Die grosszügige Barockanlage des Benediktinerklosters beherrscht mit der Klosterkirche und ihren beiden Kuppeltürmen majestätisch die Tal-Ebene von Disentis."
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-small" ],
+						userData : "content-text-small",
+						text : "Die Klosterkirche St. Martin ist von hohem kunsthistorischen Wert und ein Kulturgut nationaler Bedeutung. Laut Schweizerischem Kunstführer GSK stellt sie einen der frühen Wandpfeiler-Emporen-Räume in der süddeutschen barocken Kulturregion dar und ist  eine einmalige Architekturleistung Vorarlberger-Schule."
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-small" ],
+						userData : "content-text-small",
+						text : "Um dieses einmalige Kulturgut in seiner Pracht zu erhalten, bedarf die Klosterkirche St. Martin dringend einer umfangreichen Restaurierung. In der langen Geschichte der Abtei musste die Kirche etliche Male wieder aufgebaut und erneuert werden. Jedes Mal war es ein Kraftakt. Beachtliche finanzielle Mittel sind auch heute notwendig, um diese grosse Aufgabe der Restaurierung zu leisten."
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-bold", "content-text-small" ],
+						userData : "content-text-small",
+						text : "Letzte Gesamtsanierung der Klosterkirche vor knapp 100 Jahren."
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-small" ],
+						userData : "content-text-small",
+						text : "Die Südfassade mit den beiden Kirchtürmen wurde letztmals im Jahr 1954 renoviert. Zwar bemühte sich die Klostergemeinschaft stets, die Klosteranlage und vor allem die Klosterkirche zu pflegen; der Konvent war für deren aufwändigen Unterhalt dauernd in hohem Masse besorgt. "
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-bold", "content-text-small" ],
+						userData : "content-text-small",
+						text : "Ihre Unterstützung, ein bedeutendes Bauwerk für die Zukunft zu retten!"
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-small" ],
+						userData : "content-text-small",
+						text : "Die geschätzte Gesamtsumme für die Vorhaben an der Klosterkirche St. Martin samt Umgebung beträgt nach heutigem Kostenvoranschlag rund CHF 15 Mio. Der Klostergemeinschaft ist es nicht möglich, die zusätzlichen Mittel für die Restaurierung der Klosterkirche aus eigener Kraft aufzubringen. Um die Finanzierung der notwendigen Restaurierung zu gewährleisten, startete das Kloster im Jubiläumsjahr 2014 eine breite Sammel-Aktion."
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-small" ],
+						userData : "content-text-small",
+						text : "Zurzeit laufen breit angelegte Fundraising-Aktivitäten. Falls deren Ziele erreicht werden, wird mit der Detailplanung und Vorarbeiten im Jahr 2016 begonnen. Während der Jahre 2017 und 2018 ist die Aussen-Restaurierung vorgesehen, überlappend bzw. anschliessend erfolgt während der Jahre 2018 und 2019 die Innen-Restaurierung."
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-small" ],
+						userData : "content-text-small",
+						text : "Ihre Spende hilft, die Restaurierung so schnell als möglich zu starten."
+					}
+				}
+			}
+		},
+		CollapsibleItemPane {
+			titleText : "Kunsthistorische Werte erhalten",
+			content : VBox id content {
+				managed : false,
+				visible : false,
+				spacing : 3,
+				TextFlow {
+					lineSpacing : 3,
+					Text {
+						styleClass : [ "content-text-bold", "content-text-small" ],
+						userData : "content-text-small",
+						text : "Imposante barocke « Kirchenburg »"
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-small" ],
+						userData : "content-text-small",
+						text : "Vom mittelalterlichen Passkloster und seinen drei Kirchen sind die heute sichtbaren Ausgrabungen im Innenhof, der Chor der Marienkirche sowie ausgestellte Funde im Klostermuseum erhalten."
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-small" ],
+						userData : "content-text-small",
+						text : "Mit dem Klosterneubau im 17. und 18. Jahrhundert wurde die mittelalterliche Gebäudelandschaft durch eine «imposante barocke Kirchenburg» ersetzt."
+					},
+					LineBreakText,
+					ImageView {
+						image : Image {
+							url : location "img/dsc03801.jpg"
+						},
+						preserveRatio : true,
+						fitHeight : 300
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-italic", "content-text-small" ],
+						userData : "content-text-small",
+						text : "Blick auf die Klosteranlage mit Internats-Gymnasium"
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-bold", "content-text-small" ],
+						userData : "content-text-small",
+						text : "Hoher kunsthistorischer Wert der Klosteranlage und Klosterkirche"
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-small" ],
+						userData : "content-text-small",
+						text : "Die Klosterkirche ist im Schweizerischen Kunstführer GSK («Die Benediktinerabtei Disentis») ausführlich dokumentiert:"
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-small" ],
+						userData : "content-text-small",
+						text : "«Raum, Kirchenfassade und Kloster bilden inmitten der Bündner Hochgebirgslandschaft einen Stil, den man alpinen Barock nennen möchte» (Oscar Sandner). Die Klosterkirche St. Martin bildet den Ostflügel des eindrücklichen Klosterkomplexes. Sie stellt einen der frühen Wandpfeiler-Emporen-Räume in der süddeutschen barocken Kulturregion dar. Ihre kompakte Ausführung mit der Bildung einer Lichtrahmenschicht an den Längsfassaden ist zudem eine einmalige Architekturleistung der Vorarlberger-Schule."
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-small" ],
+						userData : "content-text-small",
+						text : "Die Altarausstattung stammt zum grossen Teil aus der Erbauungszeit und umfasst auch zwei bedeutsame Renaissancealtäre der Vorgängerkirche St. Martin III."
+					},
+					LineBreakText,
+					ImageView {
+						image : Image {
+							url : location "img/stiftung_006.png"
+						},
+						preserveRatio : true,
+						fitHeight : 300
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-italic", "content-text-small" ],
+						userData : "content-text-small",
+						text : "Blick in die Klosterkirche"
+					}
+				}
+			}
+		},
+		CollapsibleItemPane {
+			titleText : "Restaurierungs-Bedarf",
+			content : VBox id content {
+				managed : false,
+				visible : false,
+				spacing : 3,
+				TextFlow {
+					lineSpacing : 3,
+					Text {
+						styleClass : [ "content-text-bold", "content-text-small" ],
+						userData : "content-text-small",
+						text : "Der Blick trügt – die Restaurierung der Klosterkirche ist dringend notwendig"
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-small" ],
+						userData : "content-text-small",
+						text : "Zwar bemühte sich die Klostergemeinschaft stets, die Klosteranlage und vor allem die Klosterkirche zu pflegen, der Konvent war für deren aufwändigen Unterhalt dauernd in hohem Masse besorgt."
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-small" ],
+						userData : "content-text-small",
+						text : "Inzwischen sind die Risse an den Fassaden und im Inneren des Bauwerks sowie weitere Bauschäden unübersehbar. Eine Gesamt-Instandstellung der Klosterkirche St. Martin erscheint deshalb dem Konvent, den Besuchern und allen beteiligten Experten als dringend notwendig."
+					},
+					LineBreakText,
+					ImageView {
+						image : Image {
+							url : location "img/patronatskommitee_v5_print-7.jpg"
+						},
+						preserveRatio : true,
+						fitHeight : 300
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-italic", "content-text-small" ],
+						userData : "content-text-small",
+						text : "Deckenfresken von Schimmelpilz befallen"
+					},
+					LineBreakText,
+					ImageView {
+						image : Image {
+							url : location "img/patronatskommitee_v5_print-8.jpg"
+						},
+						preserveRatio : true,
+						fitHeight : 300
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-italic", "content-text-small" ],
+						userData : "content-text-small",
+						text : "Holzwurmschäden an den Altären"
+					},
+					LineBreakText,
+					ImageView {
+						image : Image {
+							url : location "img/patronatskommitee_v5_print-10.jpg"
+						},
+						preserveRatio : true,
+						fitHeight : 300
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-italic", "content-text-small" ],
+						userData : "content-text-small",
+						text : "Staub- und Schmutzschichten, Risse im Gemäuer"
+					},
+					LineBreakText,
+					ImageView {
+						image : Image {
+							url : location "img/patronatskommitee_v5_print-12.jpg"
+						},
+						preserveRatio : true,
+						fitHeight : 300
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-italic", "content-text-small" ],
+						userData : "content-text-small",
+						text : "Frostschäden an der Südfassade"
+					}
+				}
+			}
+		},
+		CollapsibleItemPane {
+			titleText : "Vorhaben 2016-2019",
+			content : VBox id content {
+				managed : false,
+				visible : false,
+				spacing : 3,
+				TextFlow {
+					lineSpacing : 3,
+					Text {
+						styleClass : [ "content-text-bold", "content-text-small" ],
+						userData : "content-text-small",
+						text : "Umfangreiche Vorarbeiten für die Restaurierung sind abgeschlossen"
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-small" ],
+						userData : "content-text-small",
+						text : "Als Vorbereitung hierzu sind unter der Leitung des spezialisierten Architekturbüros Schmid Krieger AG aus Luzern, während der Jahre 2006 / 07 und 2013 / 14, umfassende Untersuchungen durchgeführt und Vorzustands-Dokumentationen erstellt worden."
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-small" ],
+						userData : "content-text-small",
+						text : "Diese Arbeiten erfolgten in enger Zusammenarbeit mit der Denkmalpflege des Kantons Graubünden."
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-small" ],
+						userData : "content-text-small",
+						text : "In und um das Kirchengebäude erstellten die Experten mit neuesten Techniken eine detaillierte Situationsanalyse. Zudem befassten sie sich intensiv mit den Fachbereichen Baustatik, Bauphysik, Elektroplanung, Lüftung, Heizung, Akustik, Beleuchtung, Gebäudeautomation sowie mit der Konservierung von Fenstern, von Natursteinböden, ebenso mit den Orgeln des rund 300 Jahre alten Baudenkmals."
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-bold", "content-text-small" ],
+						userData : "content-text-small",
+						text : "Realisation Vorhaben 2016 bis 2019"
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-small" ],
+						userData : "content-text-small",
+						text : "Dank erfreulicher Fortschritte der Fundraising-Aktivitäten ermunterte der Kanton Graubünden das Kloster, die Restaurierung der havarierten Südfassade der Klosterkirche zeitlich vorzuziehen, d.h. bereits 2016 zu realisieren. Das vorgezogene Projekt beläuft sich auf CHF 2.3 Mio. Daran beteiligen sich der Kanton (Denkmalpflege) sowie der Bund (Bundesamt für Kultur / Denkmalpflege) mit CHF 0.8 Mio. Der Restbetrag ist durch Fundraising-Zusagen abgesichert."
+					},
+					LineBreakText,
+					Text {
+						styleClass : [ "content-text-small" ],
+						userData : "content-text-small",
+						text : "Weitere Fundraising-Anstrengungen sind notwendig um in den Jahren 2017 die Ostfassade der Klosterkirche sowie in den Jahren 2018/2019 die Innensanierung durchführen zu können. "
+					}
+				}
+			}
+		},
+		CollapsibleItemPane {
+			titleText : "Fundraising",
+			content : VBox id content {
+				managed : false,
+				visible : false,
+				spacing : 3,
+				TextFlow {
+					lineSpacing : 3,
+					Text {
+						styleClass : [ "content-text-small" ],
+						userData : "content-text-small",
+						text : "..."
+					}
+				}
+			}
+		}
+	}
+}
