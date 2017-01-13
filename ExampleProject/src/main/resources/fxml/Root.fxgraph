@@ -74,15 +74,15 @@ component Root styledwith [ "/style.css" ] controlledby RootController {
 					glyphName : const MaterialDesignIcon#REFRESH,
 					glyphSize : 25
 				}
-			},
-			Button id showTextSize {
-				styleClass : [ "graphic-only" ],
-				preview text : "Text Size",
-				graphic : MaterialDesignIconView {
-					glyphName : const MaterialDesignIcon#FORMAT_SIZE,
-					glyphSize : 25
-				}
 			}
+			//, Button id showTextSize {
+			//	styleClass : [ "graphic-only" ],
+			//	preview text : "Text Size",
+			//	graphic : MaterialDesignIconView {
+			//		glyphName : const MaterialDesignIcon#FORMAT_SIZE,
+			//		glyphSize : 25
+			//	}
+			//}
 		}
 	}
 }
