@@ -7,6 +7,8 @@ import javafx.scene.image.ImageView
 import javafx.scene.control.Label
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon
+import javafx.scene.text.Font
+import eu.dzim.example.model.FontData
 
 dynamic component CollapsibleButton styledwith [ "/style.css" ] {
 	HBox {
@@ -14,8 +16,13 @@ dynamic component CollapsibleButton styledwith [ "/style.css" ] {
 		alignment : "CENTER_LEFT",
 		Button id title {
 			alignment : "CENTER_LEFT",
-			styleClass : [ "transparent", "no-effect", "content-text-default" ],
-			userData : "content-text-default",
+			styleClass : [ "transparent", "no-effect" ],
+			font : Font {
+				size : 12
+			},
+			userData : FontData {
+				weight : "BOLD"
+			},
 			style : "-fx-label-padding: 0 0 0 -9;",
 			preview text : "Title",
 			minHeight : 40.0,

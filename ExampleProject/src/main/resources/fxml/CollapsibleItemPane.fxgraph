@@ -4,11 +4,11 @@ import javafx.scene.layout.BorderPane
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon
 import javafx.scene.layout.Pane
 import eu.dzim.example.ui.CollapsibleItemButton
+import eu.dzim.example.model.FontData
 
 dynamic component CollapsibleItemPane styledwith [ "/style.css" ] {
 	BorderPane {
 		top : CollapsibleItemButton id collapsibleButton {
-			titleStyleClass : [ "content-text-bold" ],
 			buttonStyle : "-fx-min-width: 30; -fx-max-width: 30; -fx-min-height: 30; -fx-max-height: 30;",
 			glyph90Name : const MaterialDesignIcon#MENU_DOWN,
 			glyph90Size : 30,

@@ -32,7 +32,7 @@ public class RootController {
 	@FXML private VBox contentBox;
 	@FXML private ProgressIndicator progress;
 	@FXML private Button showContent;
-	// @FXML private Button showTextSize;
+	@FXML private Button showTextSize;
 	
 	private boolean contentLoaded = false;;
 	
@@ -53,7 +53,7 @@ public class RootController {
 		progress.managedProperty().bind(progress.visibleProperty());
 		
 		showContent.setOnAction(e -> showContent());
-		// showTextSize.setOnAction(e -> switchThroughTextSize());
+		showTextSize.setOnAction(e -> switchThroughTextSize());
 	}
 	
 	private void showContent() {
@@ -96,18 +96,22 @@ public class RootController {
 		executor.submit(task);
 	}
 	
-	// private void switchThroughTextSize() {
-	// switch (ApplicationModel.getInstance().getTextSize()) {
-	// case Utils.TEXT_SIZE_SMALL:
-	// ApplicationModel.getInstance().setTextSize(Utils.TEXT_SIZE_DEFAULT);
-	// case Utils.TEXT_SIZE_DEFAULT:
-	// ApplicationModel.getInstance().setTextSize(Utils.TEXT_SIZE_LARGE);
-	// case Utils.TEXT_SIZE_LARGE:
-	// ApplicationModel.getInstance().setTextSize(Utils.TEXT_SIZE_SMALL);
-	// default:
-	// ApplicationModel.getInstance().setTextSize(Utils.TEXT_SIZE_DEFAULT);
-	// }
-	// }
+	private void switchThroughTextSize() {
+		switch (ApplicationModel.getInstance().getTextSize()) {
+		case Utils.TEXT_SIZE_SMALL:
+			ApplicationModel.getInstance().setTextSize(Utils.TEXT_SIZE_DEFAULT);
+			break;
+		case Utils.TEXT_SIZE_DEFAULT:
+			ApplicationModel.getInstance().setTextSize(Utils.TEXT_SIZE_LARGE);
+			break;
+		case Utils.TEXT_SIZE_LARGE:
+			ApplicationModel.getInstance().setTextSize(Utils.TEXT_SIZE_SMALL);
+			break;
+		default:
+			ApplicationModel.getInstance().setTextSize(Utils.TEXT_SIZE_DEFAULT);
+			break;
+		}
+	}
 	
 	private List<CollapsibleItemPane> getCollapsibleItemPanesFromContent() {
 		List<CollapsibleItemPane> panes = new ArrayList<>();

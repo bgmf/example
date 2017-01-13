@@ -14,9 +14,6 @@
 
 	<top>
 		<CollapsibleItemButton fx:id="collapsibleButton" buttonStyle="-fx-min-width: 30; -fx-max-width: 30; -fx-min-height: 30; -fx-max-height: 30;" glyph90Size="30" glyph180Visible="false"> 
-			<titleStyleClass>
-				<String fx:value="content-text-bold" />
-			</titleStyleClass>
 			<glyph90Name><MaterialDesignIcon fx:constant="MENU_DOWN" /></glyph90Name>
 		</CollapsibleItemButton>
 	</top>

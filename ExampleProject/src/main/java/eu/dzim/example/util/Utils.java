@@ -6,10 +6,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import eu.dzim.example.model.FontData;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Labeled;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.util.Pair;
 
 public class Utils {
@@ -41,15 +44,6 @@ public class Utils {
 	public static final Pair<String, String> SCPAIR_TEXT_XXLARGE = new Pair<>(SC_TEXT_XXLARGE, "-fx-font-size: 1.6em");
 	public static final Pair<String, String> SCPAIR_TEXT_XXXLARGE = new Pair<>(SC_TEXT_XXXLARGE, "-fx-font-size: 1.8em");
 	public static final Pair<String, String> SCPAIR_TEXT_XXXXLARGE = new Pair<>(SC_TEXT_XXXLARGE, "-fx-font-size: 2.0em");
-	
-	public static final Pair<String, Integer> SCIPAIR_TEXT_XSMALL = new Pair<>(SC_TEXT_XSMALL, 6);
-	public static final Pair<String, Integer> SCIPAIR_TEXT_SMALL = new Pair<>(SC_TEXT_SMALL, 8);
-	public static final Pair<String, Integer> SCIPAIR_TEXT_DEFAULT = new Pair<>(SC_TEXT_DEFAULT, 10);
-	public static final Pair<String, Integer> SCIPAIR_TEXT_LARGE = new Pair<>(SC_TEXT_LARGE, 12);
-	public static final Pair<String, Integer> SCIPAIR_TEXT_XLARGE = new Pair<>(SC_TEXT_XLARGE, 14);
-	public static final Pair<String, Integer> SCIPAIR_TEXT_XXLARGE = new Pair<>(SC_TEXT_XXLARGE, 16);
-	public static final Pair<String, Integer> SCIPAIR_TEXT_XXXLARGE = new Pair<>(SC_TEXT_XXXLARGE, 18);
-	public static final Pair<String, Integer> SCIPAIR_TEXT_XXXXLARGE = new Pair<>(SC_TEXT_XXXLARGE, 20);
 	
 	public static final Color BG_OVERLAY = Color.web("#000000B2");
 	
@@ -96,6 +90,10 @@ public class Utils {
 					|| node.getStyleClass().contains(SC_TEXT_XLARGE) || node.getStyleClass().contains(SC_TEXT_XXLARGE)
 					|| node.getStyleClass().contains(SC_TEXT_XXXLARGE) || node.getStyleClass().contains(SC_TEXT_XXXXLARGE))) {
 				nodes.add(node);
+			} else if (resizable && node.getUserData() instanceof FontData) {
+				nodes.add(node);
+			} else if (resizable && node.getUserData() instanceof Integer) {
+				nodes.add(node);
 			} else if (!resizable) {
 				nodes.add(node);
 			}
@@ -136,237 +134,191 @@ public class Utils {
 		if (value == null)
 			value = TEXT_SIZE_DEFAULT;
 		
+		List<String> scCopy = new ArrayList<>(labeled.getStyleClass());
 		List<String> styleClasses = new ArrayList<>();
-		for (String sc : labeled.getStyleClass()) {
+		for (String sc : scCopy) {
 			if (SC_TO_REMOVE.contains(sc))
 				continue;
 			styleClasses.add(sc);
 		}
-		// labeled.getStyleClass().removeAll(SC_TEXT_XSMALL, SC_TEXT_SMALL, SC_TEXT_DEFAULT, SC_TEXT_LARGE, SC_TEXT_XLARGE, SC_TEXT_XXLARGE,
-		// SC_TEXT_XXXLARGE, SC_TEXT_XXXXLARGE);
 		
-		// Labeled label = null;
-		// Font font = null;
-		// if (labeled instanceof Labeled) {
-		// label = (Labeled) labeled;
-		// font = label.getFont();
-		// }
-		
-		if (SC_TEXT_XSMALL.equalsIgnoreCase((String) labeled.getUserData())) {
-			switch (value) {
-			case TEXT_SIZE_SMALL:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_XSMALL.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_XSMALL);
-				styleClasses.add(SC_TEXT_XSMALL);
-				break;
-			case TEXT_SIZE_DEFAULT:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_XSMALL.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_XSMALL);
-				styleClasses.add(SC_TEXT_XSMALL);
-				break;
-			case TEXT_SIZE_LARGE:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_SMALL.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_SMALL);
-				styleClasses.add(SC_TEXT_SMALL);
-				break;
-			default:
-				break;
-			}
-		} else if (SC_TEXT_SMALL.equalsIgnoreCase((String) labeled.getUserData())) {
-			switch (value) {
-			case TEXT_SIZE_SMALL:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_XSMALL.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_XSMALL);
-				styleClasses.add(SC_TEXT_XSMALL);
-				break;
-			case TEXT_SIZE_DEFAULT:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_SMALL.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_SMALL);
-				styleClasses.add(SC_TEXT_SMALL);
-				break;
-			case TEXT_SIZE_LARGE:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_DEFAULT.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_DEFAULT);
-				styleClasses.add(SC_TEXT_DEFAULT);
-				break;
-			default:
-				break;
-			}
-		} else if (SC_TEXT_DEFAULT.equalsIgnoreCase((String) labeled.getUserData())) {
-			switch (value) {
-			case TEXT_SIZE_SMALL:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_SMALL.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_SMALL);
-				styleClasses.add(SC_TEXT_SMALL);
-				break;
-			case TEXT_SIZE_DEFAULT:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_DEFAULT.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_DEFAULT);
-				styleClasses.add(SC_TEXT_DEFAULT);
-				break;
-			case TEXT_SIZE_LARGE:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_LARGE.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_LARGE);
-				styleClasses.add(SC_TEXT_LARGE);
-				break;
-			default:
-				break;
-			}
-		} else if (SC_TEXT_LARGE.equalsIgnoreCase((String) labeled.getUserData())) {
-			switch (value) {
-			case TEXT_SIZE_SMALL:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_DEFAULT.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_DEFAULT);
-				styleClasses.add(SC_TEXT_DEFAULT);
-				break;
-			case TEXT_SIZE_DEFAULT:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_LARGE.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_LARGE);
-				styleClasses.add(SC_TEXT_LARGE);
-				break;
-			case TEXT_SIZE_LARGE:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_XLARGE.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_XLARGE);
-				styleClasses.add(SC_TEXT_XLARGE);
-				break;
-			default:
-				break;
-			}
-		} else if (SC_TEXT_XLARGE.equalsIgnoreCase((String) labeled.getUserData())) {
-			switch (value) {
-			case TEXT_SIZE_SMALL:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_LARGE.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_LARGE);
-				styleClasses.add(SC_TEXT_LARGE);
-				break;
-			case TEXT_SIZE_DEFAULT:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_XLARGE.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_XLARGE);
-				styleClasses.add(SC_TEXT_XLARGE);
-				break;
-			case TEXT_SIZE_LARGE:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_XXLARGE.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_XXLARGE);
-				styleClasses.add(SC_TEXT_XXLARGE);
-				break;
-			default:
-				break;
-			}
-		} else if (SC_TEXT_XXLARGE.equalsIgnoreCase((String) labeled.getUserData())) {
-			switch (value) {
-			case TEXT_SIZE_SMALL:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_XLARGE.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_XLARGE);
-				styleClasses.add(SC_TEXT_XLARGE);
-				break;
-			case TEXT_SIZE_DEFAULT:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_XXLARGE.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_XXLARGE);
-				styleClasses.add(SC_TEXT_XXLARGE);
-				break;
-			case TEXT_SIZE_LARGE:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_XXXLARGE.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_XXXLARGE);
-				styleClasses.add(SC_TEXT_XXXLARGE);
-				break;
-			default:
-				break;
-			}
-		} else if (SC_TEXT_XXXLARGE.equalsIgnoreCase((String) labeled.getUserData())) {
-			switch (value) {
-			case TEXT_SIZE_SMALL:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_XXLARGE.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_XXLARGE);
-				styleClasses.add(SC_TEXT_XXLARGE);
-				break;
-			case TEXT_SIZE_DEFAULT:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_XXXLARGE.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_XXXLARGE);
-				styleClasses.add(SC_TEXT_XXXLARGE);
-				break;
-			case TEXT_SIZE_LARGE:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_XXXXLARGE.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_XXXXLARGE);
-				styleClasses.add(SC_TEXT_XXXXLARGE);
-				break;
-			default:
-				break;
-			}
-		} else if (SC_TEXT_XXXXLARGE.equalsIgnoreCase((String) labeled.getUserData())) {
-			switch (value) {
-			case TEXT_SIZE_SMALL:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_XXXLARGE.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_XXXLARGE);
-				styleClasses.add(SC_TEXT_XXXLARGE);
-				break;
-			case TEXT_SIZE_DEFAULT:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_XXXXLARGE.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_XXXXLARGE);
-				styleClasses.add(SC_TEXT_XXXXLARGE);
-				break;
-			case TEXT_SIZE_LARGE:
-				// if (label != null)
-				// label.setFont(new Font(font.getName(), SCIPAIR_TEXT_XXXXLARGE.getValue()));
-				// else
-				// labeled.getStyleClass().add(SC_TEXT_XXXXLARGE);
-				styleClasses.add(SC_TEXT_XXXXLARGE);
-				break;
-			default:
-				break;
-			}
-		} else {
-			if (isDebug())
-				LOG.info("Not updating labeled. It seems not to contain one of the stylable classes.");
+		Labeled label = null;
+		Text text = null;
+		Font font = null;
+		if (labeled instanceof Labeled) {
+			label = (Labeled) labeled;
+			font = label.getFont();
+		} else if (labeled instanceof Text) {
+			text = (Text) labeled;
+			font = text.getFont();
 		}
-		labeled.getStyleClass().setAll(styleClasses);
+		FontData data = null;
+		if (labeled.getUserData() instanceof Integer) {
+			data = new FontData();
+			data.setSize((Integer) labeled.getUserData());
+		} else if (labeled.getUserData() instanceof FontData) {
+			data = (FontData) labeled.getUserData();
+		} else {
+			data = new FontData();
+			data.setSize(12);
+		}
 		
-		PlatformHelper.run(() -> labeled.getParent().layout());
+		if (font != null) {
+			switch (value) {
+			case TEXT_SIZE_SMALL: {
+				Font f = Font.font(font.getFamily(), data.getWeight(), data.getPosture(), data.getSize() - 2);
+				if (label != null)
+					label.setFont(f);
+				else if (text != null)
+					text.setFont(f);
+				break;
+			}
+			case TEXT_SIZE_DEFAULT: {
+				Font f = Font.font(font.getFamily(), data.getWeight(), data.getPosture(), data.getSize());
+				if (label != null)
+					label.setFont(f);
+				else if (text != null)
+					text.setFont(f);
+				break;
+			}
+			case TEXT_SIZE_LARGE: {
+				Font f = Font.font(font.getFamily(), data.getWeight(), data.getPosture(), data.getSize() + 2);
+				if (label != null)
+					label.setFont(f);
+				else if (text != null)
+					text.setFont(f);
+				break;
+			}
+			default:
+				break;
+			}
+			// PlatformHelper.run(() -> labeled.getParent().layout());
+			
+		} else if (labeled.getUserData() instanceof String) {
+			
+			if (SC_TEXT_XSMALL.equalsIgnoreCase((String) labeled.getUserData())) {
+				switch (value) {
+				case TEXT_SIZE_SMALL:
+					styleClasses.add(SC_TEXT_XSMALL);
+					break;
+				case TEXT_SIZE_DEFAULT:
+					styleClasses.add(SC_TEXT_XSMALL);
+					break;
+				case TEXT_SIZE_LARGE:
+					styleClasses.add(SC_TEXT_SMALL);
+					break;
+				default:
+					break;
+				}
+			} else if (SC_TEXT_SMALL.equalsIgnoreCase((String) labeled.getUserData())) {
+				switch (value) {
+				case TEXT_SIZE_SMALL:
+					styleClasses.add(SC_TEXT_XSMALL);
+					break;
+				case TEXT_SIZE_DEFAULT:
+					styleClasses.add(SC_TEXT_SMALL);
+					break;
+				case TEXT_SIZE_LARGE:
+					styleClasses.add(SC_TEXT_DEFAULT);
+					break;
+				default:
+					break;
+				}
+			} else if (SC_TEXT_DEFAULT.equalsIgnoreCase((String) labeled.getUserData())) {
+				switch (value) {
+				case TEXT_SIZE_SMALL:
+					styleClasses.add(SC_TEXT_SMALL);
+					break;
+				case TEXT_SIZE_DEFAULT:
+					styleClasses.add(SC_TEXT_DEFAULT);
+					break;
+				case TEXT_SIZE_LARGE:
+					styleClasses.add(SC_TEXT_LARGE);
+					break;
+				default:
+					break;
+				}
+			} else if (SC_TEXT_LARGE.equalsIgnoreCase((String) labeled.getUserData())) {
+				switch (value) {
+				case TEXT_SIZE_SMALL:
+					styleClasses.add(SC_TEXT_DEFAULT);
+					break;
+				case TEXT_SIZE_DEFAULT:
+					styleClasses.add(SC_TEXT_LARGE);
+					break;
+				case TEXT_SIZE_LARGE:
+					styleClasses.add(SC_TEXT_XLARGE);
+					break;
+				default:
+					break;
+				}
+			} else if (SC_TEXT_XLARGE.equalsIgnoreCase((String) labeled.getUserData())) {
+				switch (value) {
+				case TEXT_SIZE_SMALL:
+					styleClasses.add(SC_TEXT_LARGE);
+					break;
+				case TEXT_SIZE_DEFAULT:
+					styleClasses.add(SC_TEXT_XLARGE);
+					break;
+				case TEXT_SIZE_LARGE:
+					styleClasses.add(SC_TEXT_XXLARGE);
+					break;
+				default:
+					break;
+				}
+			} else if (SC_TEXT_XXLARGE.equalsIgnoreCase((String) labeled.getUserData())) {
+				switch (value) {
+				case TEXT_SIZE_SMALL:
+					styleClasses.add(SC_TEXT_XLARGE);
+					break;
+				case TEXT_SIZE_DEFAULT:
+					styleClasses.add(SC_TEXT_XXLARGE);
+					break;
+				case TEXT_SIZE_LARGE:
+					styleClasses.add(SC_TEXT_XXXLARGE);
+					break;
+				default:
+					break;
+				}
+			} else if (SC_TEXT_XXXLARGE.equalsIgnoreCase((String) labeled.getUserData())) {
+				switch (value) {
+				case TEXT_SIZE_SMALL:
+					styleClasses.add(SC_TEXT_XXLARGE);
+					break;
+				case TEXT_SIZE_DEFAULT:
+					styleClasses.add(SC_TEXT_XXXLARGE);
+					break;
+				case TEXT_SIZE_LARGE:
+					styleClasses.add(SC_TEXT_XXXXLARGE);
+					break;
+				default:
+					break;
+				}
+			} else if (SC_TEXT_XXXXLARGE.equalsIgnoreCase((String) labeled.getUserData())) {
+				switch (value) {
+				case TEXT_SIZE_SMALL:
+					styleClasses.add(SC_TEXT_XXXLARGE);
+					break;
+				case TEXT_SIZE_DEFAULT:
+					styleClasses.add(SC_TEXT_XXXXLARGE);
+					break;
+				case TEXT_SIZE_LARGE:
+					styleClasses.add(SC_TEXT_XXXXLARGE);
+					break;
+				default:
+					break;
+				}
+			} else {
+				if (isDebug())
+					LOG.info("Not updating labeled. It seems not to contain one of the stylable classes.");
+			}
+			// labeled.getStyleClass().setAll(styleClasses);
+			
+			PlatformHelper.run(() -> {
+				labeled.getStyleClass().setAll(styleClasses);
+				labeled.getParent().layout();
+			});
+		}
 	}
 	
 	@SuppressWarnings("unused")

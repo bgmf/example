@@ -64,6 +64,16 @@
 					</MaterialDesignIconView>
 				</graphic>
 			</Button>
+			<Button fx:id="showTextSize"> 
+				<styleClass>
+					<String fx:value="graphic-only" />
+				</styleClass>
+				<graphic>
+					<MaterialDesignIconView glyphSize="25"> 
+						<glyphName><MaterialDesignIcon fx:constant="FORMAT_SIZE" /></glyphName>
+					</MaterialDesignIconView>
+				</graphic>
+			</Button>
 			<styleClass>
 				<String fx:value="toolbar" />
 			</styleClass>
