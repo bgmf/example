@@ -106,6 +106,9 @@ public class CollapsibleItemPane extends BorderPane {
 				showConstructedContent();
 			});
 			new Thread(task).start();
+		} else if (content.get() != null) {
+			Utils.handleTextSizeChange(null, ApplicationModel.getInstance().getTextSize(),
+					Utils.getAllResizableNodes(content.get()).toArray(new Node[0]));
 		}
 	}
 	

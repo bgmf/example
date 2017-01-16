@@ -81,8 +81,8 @@ public class RootController {
 				pane.setOnActionAcceptor(collapsibleItemAction);
 			}
 			
-			resizableNodes.clear();
-			resizableNodes.addAll(Utils.getAllResizableNodes(contentBox));
+			// resizableNodes.clear();
+			// resizableNodes.addAll(Utils.getAllResizableNodes(contentBox));
 			handleContentTextSizeChanged(ApplicationModel.getInstance().textSizeProperty(), null, ApplicationModel.getInstance().getTextSize());
 			progress.setVisible(false);
 			contentLoaded = true;
@@ -130,6 +130,8 @@ public class RootController {
 	}
 	
 	private void handleContentTextSizeChanged(ObservableValue<? extends Number> obs, Number o, Number n) {
+		resizableNodes.clear();
+		resizableNodes.addAll(Utils.getAllResizableNodes(contentBox));
 		new Thread(() -> {
 			Utils.handleTextSizeChange(ApplicationModel.getInstance().getTextSize(), null, resizableNodes.toArray(new Node[0]));
 		}).start();
