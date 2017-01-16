@@ -14,7 +14,6 @@ import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ProgressIndicator;
@@ -27,7 +26,7 @@ public class CollapsibleItemPane extends BorderPane {
 	
 	private static final Logger LOG = Logger.getLogger(CollapsibleItemPane.class.getName());
 	
-	@FXML private CollapsibleItemButton collapsibleButton;
+	private CollapsibleItemButton collapsibleButton;
 	
 	private ObjectProperty<Pane> content = new SimpleObjectProperty<>(this, "content", buildDefaultContent());
 	private ObjectProperty<Duration> duration = new SimpleObjectProperty<>(this, "duration", Duration.millis(1));
@@ -57,7 +56,6 @@ public class CollapsibleItemPane extends BorderPane {
 		initialize();
 	}
 	
-	@FXML
 	private void initialize() {
 		
 		centerProperty().bind(content);

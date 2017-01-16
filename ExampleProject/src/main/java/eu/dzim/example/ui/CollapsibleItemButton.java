@@ -15,7 +15,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -35,10 +34,10 @@ public class CollapsibleItemButton extends HBox {
 	private static final PseudoClass SELECTED_BG = PseudoClass.getPseudoClass("selected-bg");
 	private static final PseudoClass SELECTED_BG_ALT = PseudoClass.getPseudoClass("selected-bg-alt");
 	
-	@FXML private MaterialDesignIconView mdiv90;
-	@FXML private MaterialDesignIconView mdiv180;
-	@FXML private Button button;
-	@FXML private Button title;
+	private MaterialDesignIconView mdiv90;
+	private MaterialDesignIconView mdiv180;
+	private Button button;
+	private Button title;
 	
 	private ObjectProperty<Pane> content = new SimpleObjectProperty<>();
 	
@@ -90,7 +89,6 @@ public class CollapsibleItemButton extends HBox {
 		return (t, u) -> {};
 	}
 	
-	@FXML
 	private void initialize() {
 		
 		title.setTextFill(Utils.HEADER);
@@ -350,7 +348,6 @@ public class CollapsibleItemButton extends HBox {
 		this.contentVisibleProperty().set(contentVisible);
 	}
 	
-	@FXML
 	private void handleButton(ActionEvent event) {
 		rotateButtonWithPaneAsUserData(event);
 	}
