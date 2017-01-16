@@ -1,9 +1,8 @@
 package eu.dzim.example.ui;
 
-import java.io.IOException;
-import java.util.logging.Logger;
-
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
+import eu.dzim.example.model.FontData;
 import eu.dzim.example.util.DualAcceptor;
 import eu.dzim.example.util.Utils;
 import javafx.beans.property.BooleanProperty;
@@ -17,15 +16,20 @@ import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class CollapsibleItemButton extends HBox {
 	
-	private static final Logger LOG = Logger.getLogger(CollapsibleItemButton.class.getName());
+	// private static final Logger LOG = Logger.getLogger(CollapsibleItemButton.class.getName());
 	
 	private static final PseudoClass SELECTED = PseudoClass.getPseudoClass("selected");
 	private static final PseudoClass SELECTED_BG = PseudoClass.getPseudoClass("selected-bg");
@@ -43,19 +47,56 @@ public class CollapsibleItemButton extends HBox {
 	private DualAcceptor<CollapsibleItemButton, Boolean> onActionAcceptor = getDefaultOnActionAcceptor();
 	
 	public CollapsibleItemButton() {
-		try {
-			getLoader().load();
-		} catch (IOException e) {
-			LOG.severe(e.getMessage());
-			throw new RuntimeException(e);
-		}
+		// try {
+		// getLoader().load();
+		// } catch (IOException e) {
+		// LOG.severe(e.getMessage());
+		// throw new RuntimeException(e);
+		// }
+		buildUI();
 	}
 	
-	private FXMLLoader getLoader() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CollapsibleButton.fxml"));
-		loader.setRoot(this);
-		loader.setController(this);
-		return loader;
+	// private FXMLLoader getLoader() {
+	// FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CollapsibleButton.fxml"));
+	// loader.setRoot(this);
+	// loader.setController(this);
+	// return loader;
+	// }
+	
+	private void buildUI() {
+		
+		setMaxHeight(Double.MAX_VALUE);
+		setAlignment(Pos.CENTER_LEFT);
+		
+		title = new Button();
+		title.setAlignment(Pos.CENTER_LEFT);
+		title.getStyleClass().addAll("transparent", "no-effect");
+		title.setFont(new Font(title.getFont().getName(), 12));
+		FontData titleFD = new FontData();
+		titleFD.setSize(12);
+		titleFD.setWeight(FontWeight.BOLD);
+		title.setUserData(titleFD);
+		title.setStyle("-fx-label-padding: 0 0 0 -9;");
+		title.setMinHeight(40.0);
+		title.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+		title.setWrapText(true);
+		HBox.setHgrow(title, Priority.ALWAYS);
+		
+		button = new Button();
+		button.getStyleClass().addAll("transparent");
+		button.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+		mdiv90 = new MaterialDesignIconView(MaterialDesignIcon.MINUS);
+		mdiv90.setId("to-rotate-90");
+		mdiv90.setGlyphSize(22);
+		mdiv180 = new MaterialDesignIconView(MaterialDesignIcon.MINUS);
+		mdiv180.setId("to-rotate-180");
+		mdiv180.setGlyphSize(22);
+		button.setGraphic(new StackPane(mdiv90, mdiv180));
+		button.setOnAction(this::handleButton);
+		
+		getChildren().addAll(title, button);
+		
+		initialize();
 	}
 	
 	protected static final DualAcceptor<CollapsibleItemButton, Boolean> getDefaultOnActionAcceptor() {
@@ -310,9 +351,27 @@ public class CollapsibleItemButton extends HBox {
 			handleButton(new ActionEvent(button, null));
 	}
 	
+	public final BooleanProperty contentVisibleProperty() {
+		return this.visible;
+	}
+	
+	public final boolean isContentVisible() {
+		return this.contentVisibleProperty().get();
+	}
+	
+	public final void setContentVisible(final boolean contentVisible) {
+		this.contentVisibleProperty().set(contentVisible);
+	}
+	
 	@FXML
 	private void handleButton(ActionEvent event) {
 		rotateButtonWithPaneAsUserData(event);
+	}
+	
+	protected void updatePseudoClasses(boolean show) {
+		title.pseudoClassStateChanged(SELECTED, show);
+		this.pseudoClassStateChanged(SELECTED_BG, show);
+		getContent().pseudoClassStateChanged(SELECTED_BG_ALT, show);
 	}
 	
 	protected void rotateButtonWithPaneAsUserData(ActionEvent event) {
@@ -338,9 +397,7 @@ public class CollapsibleItemButton extends HBox {
 		}
 		final boolean _show = Math.abs(toRotate.getRotate()) > 0.0 ? true : false;
 		title.setTextFill(_show ? Utils.RED : Utils.HEADER);
-		title.pseudoClassStateChanged(SELECTED, _show);
-		this.pseudoClassStateChanged(SELECTED_BG, _show);
-		getContent().pseudoClassStateChanged(SELECTED_BG_ALT, _show);
+		updatePseudoClasses(_show);
 		toRotate.setRotate(Math.abs(toRotate.getRotate()) > 0.0 ? 0.0 : angle);
 		((MaterialDesignIconView) toRotate).setFill(_show ? Utils.RED : Utils.HEADER);
 		if (toRotate180 != null && toRotate180.isVisible()) {

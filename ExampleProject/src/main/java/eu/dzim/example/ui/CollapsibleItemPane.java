@@ -3,16 +3,24 @@ package eu.dzim.example.ui;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
+import eu.dzim.example.model.ApplicationModel;
 import eu.dzim.example.util.DualAcceptor;
+import eu.dzim.example.util.Utils;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
 public class CollapsibleItemPane extends BorderPane {
@@ -21,23 +29,45 @@ public class CollapsibleItemPane extends BorderPane {
 	
 	@FXML private CollapsibleItemButton collapsibleButton;
 	
-	private ObjectProperty<Pane> content = new SimpleObjectProperty<>(this, "content", new Pane());
+	private ObjectProperty<Pane> content = new SimpleObjectProperty<>(this, "content", buildDefaultContent());
 	private ObjectProperty<Duration> duration = new SimpleObjectProperty<>(this, "duration", Duration.millis(1));
 	
+	private Pane constructedContent = null;
+	private String fxmlContent = null;
+	
 	public CollapsibleItemPane() {
-		try {
-			getLoader().load();
-		} catch (IOException e) {
-			LOG.severe(e.getMessage());
-			throw new RuntimeException(e);
-		}
+		// try {
+		// getLoader().load();
+		// } catch (IOException e) {
+		// LOG.severe(e.getMessage());
+		// throw new RuntimeException(e);
+		// }
+		buildUI();
 	}
 	
-	private FXMLLoader getLoader() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CollapsibleItemPane.fxml"));
-		loader.setRoot(this);
-		loader.setController(this);
-		return loader;
+	// private FXMLLoader getLoader() {
+	// FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CollapsibleItemPane.fxml"));
+	// loader.setRoot(this);
+	// loader.setController(this);
+	// return loader;
+	// }
+	
+	private Pane buildDefaultContent() {
+		ProgressIndicator indicator = new ProgressIndicator();
+		indicator.setMaxSize(50.0, 50.0);
+		return new StackPane(indicator);
+	}
+	
+	private void buildUI() {
+		
+		collapsibleButton = new CollapsibleItemButton();
+		collapsibleButton.setButtonStyle("-fx-min-width: 30; -fx-max-width: 30; -fx-min-height: 30; -fx-max-height: 30;");
+		collapsibleButton.setGlyph90Name(MaterialDesignIcon.MENU_DOWN.name());
+		collapsibleButton.setGlyph90Size(30);
+		collapsibleButton.setGlyph180Visible(false);
+		setTop(collapsibleButton);
+		
+		initialize();
 	}
 	
 	@FXML
@@ -46,7 +76,46 @@ public class CollapsibleItemPane extends BorderPane {
 		centerProperty().bind(content);
 		collapsibleButton.contentProperty().bind(content);
 		
+		collapsibleButton.contentVisibleProperty().addListener(this::handleContentVisibleChange);
+		
 		collapsibleButton.managedProperty().bind(collapsibleButton.visibleProperty());
+	}
+	
+	private void handleContentVisibleChange(ObservableValue<? extends Boolean> obs, Boolean o, Boolean n) {
+		if (n == null || !n)
+			return;
+		if (constructedContent != null && content.get() != constructedContent) {
+			showConstructedContent();
+		} else if (fxmlContent != null && constructedContent == null) {
+			final Task<Pane> task = new Task<Pane>() {
+				@Override
+				protected Pane call() throws Exception {
+					try {
+						FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlContent));
+						Pane pane = loader.load();
+						pane.setUserData(loader.getController());
+						return pane;
+					} catch (IOException e) {
+						LOG.severe(e.getMessage());
+					}
+					return null;
+				}
+			};
+			task.setOnSucceeded(v -> {
+				constructedContent = (Pane) v.getSource().getValue();
+				showConstructedContent();
+			});
+			new Thread(task).start();
+		}
+	}
+	
+	private void showConstructedContent() {
+		if (constructedContent == null)
+			return;
+		content.set(constructedContent);
+		collapsibleButton.updatePseudoClasses(true);
+		Utils.handleTextSizeChange(null, ApplicationModel.getInstance().getTextSize(),
+				Utils.getAllResizableNodes(content.get()).toArray(new Node[0]));
 	}
 	
 	/*
@@ -63,6 +132,22 @@ public class CollapsibleItemPane extends BorderPane {
 	
 	public void setOnActionAcceptor(DualAcceptor<CollapsibleItemButton, Boolean> onActionAcceptor) {
 		collapsibleButton.setOnActionAcceptor(onActionAcceptor);
+	}
+	
+	public Pane getConstructedContent() {
+		return constructedContent;
+	}
+	
+	public void setConstructedContent(Pane constructedContent) {
+		this.constructedContent = constructedContent;
+	}
+	
+	public String getFxmlContent() {
+		return fxmlContent;
+	}
+	
+	public void setFxmlContent(String fxmlContent) {
+		this.fxmlContent = fxmlContent;
 	}
 	
 	/*
