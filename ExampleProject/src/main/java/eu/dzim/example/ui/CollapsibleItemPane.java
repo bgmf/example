@@ -36,21 +36,8 @@ public class CollapsibleItemPane extends BorderPane {
 	private String fxmlContent = null;
 	
 	public CollapsibleItemPane() {
-		// try {
-		// getLoader().load();
-		// } catch (IOException e) {
-		// LOG.severe(e.getMessage());
-		// throw new RuntimeException(e);
-		// }
 		buildUI();
 	}
-	
-	// private FXMLLoader getLoader() {
-	// FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CollapsibleItemPane.fxml"));
-	// loader.setRoot(this);
-	// loader.setController(this);
-	// return loader;
-	// }
 	
 	private Pane buildDefaultContent() {
 		ProgressIndicator indicator = new ProgressIndicator();

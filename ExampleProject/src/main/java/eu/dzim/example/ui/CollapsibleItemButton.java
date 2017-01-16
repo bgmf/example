@@ -47,21 +47,8 @@ public class CollapsibleItemButton extends HBox {
 	private DualAcceptor<CollapsibleItemButton, Boolean> onActionAcceptor = getDefaultOnActionAcceptor();
 	
 	public CollapsibleItemButton() {
-		// try {
-		// getLoader().load();
-		// } catch (IOException e) {
-		// LOG.severe(e.getMessage());
-		// throw new RuntimeException(e);
-		// }
 		buildUI();
 	}
-	
-	// private FXMLLoader getLoader() {
-	// FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CollapsibleButton.fxml"));
-	// loader.setRoot(this);
-	// loader.setController(this);
-	// return loader;
-	// }
 	
 	private void buildUI() {
 		
@@ -379,7 +366,6 @@ public class CollapsibleItemButton extends HBox {
 		if (getContent() == null)
 			return;
 		
-		// Button button = (Button) event.getSource();
 		double angle = 0.0;
 		double angle2 = 0.0;
 		final Node toRotate;

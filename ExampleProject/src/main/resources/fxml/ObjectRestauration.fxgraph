@@ -30,8 +30,6 @@ component ObjectRestauration styledwith [ "/style.css" ] {
 				}
 			},
 			constructedContent : VBox id content {
-				// managed : false,
-				// visible : false,
 				spacing : 3,
 				TextFlow {
 					lineSpacing : 3,
@@ -152,8 +150,6 @@ component ObjectRestauration styledwith [ "/style.css" ] {
 				}
 			},
 			constructedContent : VBox id content {
-				// managed : false,
-				// visible : false,
 				spacing : 3,
 				TextFlow {
 					lineSpacing : 3,
@@ -258,8 +254,6 @@ component ObjectRestauration styledwith [ "/style.css" ] {
 				}
 			},
 			constructedContent : VBox id content {
-				// managed : false,
-				// visible : false,
 				spacing : 3,
 				TextFlow {
 					lineSpacing : 3,
@@ -364,8 +358,6 @@ component ObjectRestauration styledwith [ "/style.css" ] {
 				}
 			},
 			constructedContent : VBox id content {
-				// managed : false,
-				// visible : false,
 				spacing : 3,
 				TextFlow {
 					lineSpacing : 3,
@@ -437,8 +429,6 @@ component ObjectRestauration styledwith [ "/style.css" ] {
 				}
 			},
 			constructedContent : VBox id content {
-				// managed : false,
-				// visible : false,
 				spacing : 3,
 				TextFlow {
 					lineSpacing : 3,

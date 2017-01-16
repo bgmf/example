@@ -81,8 +81,6 @@ public class RootController {
 				pane.setOnActionAcceptor(collapsibleItemAction);
 			}
 			
-			// resizableNodes.clear();
-			// resizableNodes.addAll(Utils.getAllResizableNodes(contentBox));
 			handleContentTextSizeChanged(ApplicationModel.getInstance().textSizeProperty(), null, ApplicationModel.getInstance().getTextSize());
 			progress.setVisible(false);
 			contentLoaded = true;
