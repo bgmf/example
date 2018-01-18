@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import com.gluonhq.charm.down.Services;
 import com.gluonhq.charm.down.plugins.LifecycleService;
+import com.gluonhq.charm.down.plugins.StorageService;
 
 import eu.dzim.example.model.ApplicationModel;
 import javafx.application.Application;
@@ -56,6 +57,8 @@ public class Main extends Application {
 		stage.setScene(scene);
 		
 		scene.addEventFilter(KeyEvent.ANY, this::handleGlobalKeyEvents);
+		
+		LOG.info(">>> StorageService: " + Services.get(StorageService.class).orElse(null));
 		
 		stage.show();
 	}
